@@ -1,0 +1,23 @@
+version: '3'
+services:
+  flask_api:
+    build: .
+    networks:
+      - flask-mongo
+    volumes:
+      - mytest:/mytest
+    ports:
+      - "5000:5000"
+  mongodb:
+    image: mongo
+    ports:
+      - "27017:27017"
+    networks:
+       - flask-mongo
+    volumes:
+       - mytest:/mytest
+    container_name: mongo
+networks:
+  flask-mongo:
+volumes:
+   mytest:
